@@ -7,23 +7,8 @@ GO
 ALTER TABLE ALUGUEL ADD dataRetirada DATE, dataDevolucao DATE;
 GO
 
-INSERT INTO EMPRESA (enderecoEmpresa, cnpj)
-VALUES
-('Rua General Papinha','11111111111111'),
-('Rua Boribiuder','22222222222222'),
-('Rua Mendoim','33333333333333');
-GO
-
-INSERT INTO MARCA (nomeMarca)
-VALUES ('Volkswagen'), ('Chevrolet'), ('Toyota');
-GO
-
-INSERT INTO MODELO (nomeModelo, idMarca)
-VALUES ('Camaro',	2), ('Fusca',	1), ('Corola', 3);
-GO
-
-INSERT INTO VEICULO (anoVeiculo, idEmpresa, idModelo, placaVeiculo)
-VALUES (1966, 3, 1,'FRK-2861'), (2004,	2,	3,'THM-6188'), (1986,	2,	2,'YZV-1561');
+INSERT INTO VEICULO (anoVeiculo, placaVeiculo)
+VALUES (1966, 'FRK-2861'), (2004, 'THM-6188'), (1986, 'YZV-1561');
 GO
 
 INSERT INTO CLIENTE (nomeCliente, sobrenomeCliente)
