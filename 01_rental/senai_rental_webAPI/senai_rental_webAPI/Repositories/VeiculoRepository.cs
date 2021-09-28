@@ -20,14 +20,28 @@ namespace senai_rental_webAPI.Repositories
         //private string stringConexao = "Data Source=DESKTOP-U20H53U; initial catalog=catalogo_manha; user id=sa; pwd=Senai@132";
         private string stringConexao = @"Data Source=DESKTOP-0R6MFG3\SQLEXPRESS; initial catalog=RENTAL; integrated security=true";
 
-//_____________________________________________________________________________________________________________________________________________
+        //_____________________________________________________________________________________________________________________________________________
 
-        public void Atualizar(VeiculoDomain veículoAtualizado)
+        public void Atualizar(int idVeiculo, VeiculoDomain VeiculoAtualizado)
         {
+            using (SqlConnection con = new SqlConnection(stringConexao))
+            {
+                string queryUpdateUrl = "UPDATE Veiculo SET anoVeiculo = @anoVeiculo, placaVeiculo = @placaVeiculo WHERE idVeiculo = @id";
 
+                using (SqlCommand cmd = new SqlCommand(queryUpdateUrl, con))
+                {
+                    cmd.Parameters.AddWithValue("@id", idVeiculo);
+                    cmd.Parameters.AddWithValue("@anoVeiculo", VeiculoAtualizado.anoVeiculo);
+                    cmd.Parameters.AddWithValue("@placaVeiculo", VeiculoAtualizado.placaVeiculo);
+
+                    con.Open();
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
 
-//_____________________________________________________________________________________________________________________________________________
+        //_____________________________________________________________________________________________________________________________________________
 
         public VeiculoDomain BuscarPorId(int idVeiculo)
         {
@@ -66,7 +80,7 @@ namespace senai_rental_webAPI.Repositories
         {
             using (SqlConnection con = new SqlConnection(stringConexao))
             {
-                string queryInsert = "INSERT INTO (anoVeiculo, placaVeiculo) VALUES (@anoVeiculo, @placaVeiculo);";
+                string queryInsert = "INSERT INTO VEICULO (anoVeiculo, placaVeiculo) VALUES (@anoVeiculo, @placaVeiculo);";
 
                 using (SqlCommand cmd = new SqlCommand(queryInsert, con))
                 {

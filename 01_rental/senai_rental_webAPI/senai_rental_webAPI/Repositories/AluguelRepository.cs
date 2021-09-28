@@ -20,21 +20,37 @@ namespace senai_rental_webAPI.Repositories
         //private string stringConexao = "Data Source=DESKTOP-U20H53U; initial catalog=catalogo_manha; user id=sa; pwd=Senai@132";
         private string stringConexao = @"Data Source=DESKTOP-0R6MFG3\SQLEXPRESS; initial catalog=RENTAL; integrated security=true";
 
-//_____________________________________________________________________________________________________________________________________________
+        //_____________________________________________________________________________________________________________________________________________
 
-        public void Atualizar(AluguelDomain AluguelAtualizado)
+        public void Atualizar(int idAluguel, AluguelDomain AluguelAtualizado)
         {
+            using (SqlConnection con = new SqlConnection(stringConexao))
+            {
+                string queryUpdateUrl = "UPDATE ALUGUEL SET ALUGUEL.idVeiculo = @idVeiculo, ALUGUEL.idCliente = @idCliente, valorAluguel = @valorAluguel, dataRetirada = @dataRetirada, dataDevolucao = @dataDevolucao  WHERE idAluguel = @id";
 
+                using (SqlCommand cmd = new SqlCommand(queryUpdateUrl, con))
+                {
+                    cmd.Parameters.AddWithValue("@id", idAluguel);
+                    cmd.Parameters.AddWithValue("@idVeiculo", AluguelAtualizado.idVeiculo);
+                    cmd.Parameters.AddWithValue("@idCliente", AluguelAtualizado.idCliente);
+                    cmd.Parameters.AddWithValue("@valorAluguel", AluguelAtualizado.valorAluguel);
+                    cmd.Parameters.AddWithValue("@dataRetirada", AluguelAtualizado.dataRetirada);
+                    cmd.Parameters.AddWithValue("@dataDevolucao", AluguelAtualizado.dataDevolucao);
+
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
 
-//_____________________________________________________________________________________________________________________________________________
+        //_____________________________________________________________________________________________________________________________________________
 
 
         public AluguelDomain BuscarPorId(int idAluguel)
         {
             using (SqlConnection con = new SqlConnection(stringConexao))
             {
-                string querySelectById = "SELECT idAluguel, aluguel.idCliente, aluguel.idVeiculo, valorAluguel, dataRetirada, dataDevolucao FROM ALUGUEL";
+                string querySelectById = "SELECT idAluguel, aluguel.idCliente, aluguel.idVeiculo, valorAluguel, dataRetirada, dataDevolucao FROM ALUGUEL WHERE idAluguel = @idAluguel";
 
                 con.Open();
                 SqlDataReader reader;
@@ -70,7 +86,7 @@ namespace senai_rental_webAPI.Repositories
         {
             using (SqlConnection con = new SqlConnection(stringConexao))
             {
-                string queryInsert = "INSERT INTO (aluguel, idCliente, idVeiculo, valorAluguel, dataRetirada, dataDevolucao) VALUES (@idCliente, @idVeiculo, @valorAluguel, @dataRetirada, @dataDevolucao);";
+                string queryInsert = "INSERT INTO ALUGUEL (idCliente, idVeiculo, valorAluguel, dataRetirada, dataDevolucao) VALUES (@idCliente, @idVeiculo, @valorAluguel, @dataRetirada, @dataDevolucao);";
 
                 using (SqlCommand cmd = new SqlCommand(queryInsert, con))
                 {

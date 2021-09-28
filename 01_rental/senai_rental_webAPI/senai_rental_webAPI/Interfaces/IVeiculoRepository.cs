@@ -31,10 +31,11 @@ namespace senai_rental_webAPI.Interfaces
         void Cadastrar(VeiculoDomain novoVeiculo);
 
         /// <summary>
-        /// Atualiza um veículo existente
+        /// Atualiza um veículo existente passando o id pela URL da requisição
         /// </summary>
-        /// <param name="veiculoAtualizado">Objeto veículoAtualizado com os novos dados atualizados</param>
-        void Atualizar(VeiculoDomain veículoAtualizado);
+        /// <param name="idVeiculo">id do cliente que será atualizado</param>
+        /// <param name="VeiculoAtualizado">Objeto ClienteAtualizado com os novos dados</param>
+        void Atualizar(int idVeiculo, VeiculoDomain VeiculoAtualizado);
 
         /// <summary>
         /// Deleta um veículo existente

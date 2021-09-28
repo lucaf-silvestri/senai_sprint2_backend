@@ -31,10 +31,11 @@ namespace senai_rental_webAPI.Interfaces
         void Cadastrar(ClienteDomain novoCliente);
 
         /// <summary>
-        /// Atualiza um cliente existente
+        /// Atualiza um cliente existente passando o id pela URL da requisição
         /// </summary>
-        /// <param name="clienteAtualizado">Objeto clienteAtualizado com os novos dados atualizados</param>
-        void Atualizar(ClienteDomain clienteAtualizado);
+        /// <param name="idCliente">id do cliente que será atualizado</param>
+        /// <param name="ClienteAtualizado">Objeto ClienteAtualizado com os novos dados</param>
+        void Atualizar(int idCliente, ClienteDomain ClienteAtualizado);
 
         /// <summary>
         /// Deleta um cliente existente

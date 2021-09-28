@@ -31,10 +31,11 @@ namespace senai_rental_webAPI.Interfaces
         void Cadastrar(AluguelDomain novoAluguel);
 
         /// <summary>
-        /// Atualiza um aluguel existente
+        /// Atualiza um aluguel existente passando o id pela URL da requisição
         /// </summary>
-        /// <param name="aluguelAtualizado">Objeto aluguelAtualizado com os novos dados atualizados</param>
-        void Atualizar(AluguelDomain aluguelAtualizado);
+        /// <param name="idAluguel">id do cliente que será atualizado</param>
+        /// <param name="AluguelAtualizado">Objeto ClienteAtualizado com os novos dados</param>
+        void Atualizar(int idAluguel, AluguelDomain AluguelAtualizado);
 
         /// <summary>
         /// Deleta um aluguel existente

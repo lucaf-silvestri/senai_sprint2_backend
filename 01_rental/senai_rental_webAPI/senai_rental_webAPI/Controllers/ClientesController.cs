@@ -33,12 +33,59 @@ namespace senai_rental_webAPI.Controllers
             return Ok(listaClientes);
         }
 
+        [HttpGet("{id}")]
+        public IActionResult GetById(int id)
+        {
+            ClienteDomain ClienteBuscado = _ClienteRepository.BuscarPorId(id);
+
+            if (ClienteBuscado == null)
+            {
+                return NotFound("Nenhum cliente encontrado.");
+            }
+
+            return Ok(ClienteBuscado);
+        }
+
         [HttpPost]
         public IActionResult Post(ClienteDomain novoCliente)
         {
             _ClienteRepository.Cadastrar(novoCliente);
 
             return StatusCode(201);
+        }
+
+        [HttpDelete("excluir/{id}")]
+        public IActionResult Delete(int id)
+        {
+            _ClienteRepository.Deletar(id);
+            return StatusCode(204);
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, ClienteDomain ClienteAtualizado)
+        {
+            ClienteDomain ClienteBuscado = _ClienteRepository.BuscarPorId(id);
+
+            if (ClienteBuscado == null)
+            {
+                return NotFound
+                    (new
+                    {
+                        mensagem = "Cliente não encontrado.",
+                        erro = true
+                    });
+            }
+
+            try
+            {
+                _ClienteRepository.Atualizar(id, ClienteAtualizado);
+
+                return NoContent();
+            }
+            catch (Exception erro)
+            {
+                return BadRequest(erro);
+            }
         }
     }
 }

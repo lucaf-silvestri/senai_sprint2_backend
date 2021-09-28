@@ -23,11 +23,25 @@ namespace senai_rental_webAPI.Repositories
         //private string stringConexao = "Data Source=DESKTOP-U20H53U; initial catalog=catalogo_manha; user id=sa; pwd=Senai@132";
         private string stringConexao = @"Data Source=DESKTOP-0R6MFG3\SQLEXPRESS; initial catalog=RENTAL; integrated security=true";
 
-//_____________________________________________________________________________________________________________________________________________
+        //_____________________________________________________________________________________________________________________________________________
 
-        public void Atualizar(ClienteDomain clienteAtualizado)
+        public void Atualizar(int idCliente, ClienteDomain ClienteAtualizado)
         {
+            using (SqlConnection con = new SqlConnection(stringConexao))
+            {
+                string queryUpdateUrl = "UPDATE CLIENTE SET nomeCliente = @nomeCliente, sobrenomeCliente = @sobrenomeCliente WHERE idCliente = @id";
 
+                using (SqlCommand cmd = new SqlCommand(queryUpdateUrl, con))
+                {
+                    cmd.Parameters.AddWithValue("@id", idCliente);
+                    cmd.Parameters.AddWithValue("@nomeCliente", ClienteAtualizado.nomeCliente);
+                    cmd.Parameters.AddWithValue("@sobrenomeCliente", ClienteAtualizado.sobrenomeCliente);
+
+                    con.Open();
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
 
         //_____________________________________________________________________________________________________________________________________________
@@ -63,19 +77,21 @@ namespace senai_rental_webAPI.Repositories
             }
         }
 
-        //_____________________________________________________________________________________________________________________________________________
+//_____________________________________________________________________________________________________________________________________________
 
         public void Cadastrar(ClienteDomain cliente)
         {
             using (SqlConnection con = new SqlConnection(stringConexao))
             {
-                string queryInsert = "INSERT INTO (nomeCliente, sobrenomeCliente) VALUES (@nomeCliente, @sobrenomeCliente);";
+                string queryInsert = "INSERT INTO CLIENTE (nomeCliente, sobrenomeCliente) VALUES (@nomeCliente, @sobrenomeCliente);";
 
                 using (SqlCommand cmd = new SqlCommand(queryInsert, con))
                 {
+                    con.Open();
+
                     cmd.Parameters.AddWithValue("@nomeCliente", cliente.nomeCliente);
                     cmd.Parameters.AddWithValue("@sobrenomeCliente", cliente.sobrenomeCliente);
-                    con.Open();
+
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -87,6 +103,7 @@ namespace senai_rental_webAPI.Repositories
         {
             using (SqlConnection con = new SqlConnection(stringConexao))
             {
+
                 string queryDelete = "DELETE FROM CLIENTE WHERE idCliente = @idCliente";
                 using (SqlCommand cmd = new SqlCommand(queryDelete, con))
                 {
