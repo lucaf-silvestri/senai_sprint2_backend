@@ -1,4 +1,7 @@
-USE _INLOCK_GAMES_MANHA;
+USE INLOCK_GAMES_MANHA;
+GO
+
+SELECT * FROM TIPOUSUARIO;
 GO
 
 -- Listar todos os usuários:
@@ -26,7 +29,7 @@ ON JOGO.idEstudio = ESTUDIO.idEstudio
 GO
 
 -- Buscar um usuário por e-mail e senha (login):
-SELECT idUsuario as 'Id', email as 'Email',  idTipoUsuario as 'Id do Tipo de Usuário' FROM USUARIO
+SELECT idUsuario as 'Id', email as 'Email', senha as 'senha', idTipoUsuario as 'Id do Tipo de Usuário' FROM USUARIO
 WHERE email = 'admin@admin.com' and senha = 'admin'
 GO
 
