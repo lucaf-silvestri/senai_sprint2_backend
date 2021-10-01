@@ -1,4 +1,5 @@
 ﻿using senai.inlock.webApi.Domains;
+using senai.inlock.webApi.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace senai.inlock.webApi.Repositories
 {
-    public class JogoRepository
+    public class JogoRepository : IJogoRepository
     {
         /// <summary>
         /// String de conexão com o banco de dados que recebe os parâmetros

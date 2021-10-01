@@ -15,5 +15,6 @@ namespace senai.inlock.webApi.Domains
 
         [Required(ErrorMessage = "Informe o nome do estúdio.")]
         public string nomeEstudio { get; set; }
+        public List<JogoDomain> listaJogos { get; set; }
     }
 }
