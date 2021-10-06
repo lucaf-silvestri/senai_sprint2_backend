@@ -83,6 +83,7 @@ namespace senai.inlock.webApi.Repositories
                 using (SqlCommand cmd = new SqlCommand(queryInsert, con))
                 {
                     con.Open();
+                    cmd.Parameters.AddWithValue("@idTipoUsuario", TipoUsuario.idTipoUsuario);
                     cmd.Parameters.AddWithValue("@titulo", TipoUsuario.titulo);
                     cmd.ExecuteNonQuery();
                 }

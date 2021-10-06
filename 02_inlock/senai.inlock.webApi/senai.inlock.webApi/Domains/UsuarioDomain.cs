@@ -17,7 +17,6 @@ namespace senai.inlock.webApi.Domains
         public string email { get; set; }
 
         [Required(ErrorMessage = "Informe a senha.")]
-        [StringLength(30, MinimumLength = 5, ErrorMessage = "O campo senha deve conter, no mínimo, 5 e, no máximo, 30 caracteres.")]
         public string senha { get; set; }
 
         public int idTipoUsuario { get; set; }

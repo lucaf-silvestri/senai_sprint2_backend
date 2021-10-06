@@ -22,6 +22,11 @@ namespace senai.inlock.webApi.Repositories
 
         //_____________________________________________________________________________________________________________________________________________
 
+        /// <summary>
+        /// Atualiza um Estudio existente passando o id pela URL da requisição
+        /// </summary>
+        /// <param name="idEstudio">id do Estudio que será atualizado</param>
+        /// <param name="EstudioAtualizado">Objeto EstudioAtualizado com os novos dados</param>
         public void Atualizar(int idEstudio, EstudioDomain EstudioAtualizado)
         {
             using (SqlConnection con = new SqlConnection(stringConexao))
@@ -40,11 +45,16 @@ namespace senai.inlock.webApi.Repositories
 
         //_____________________________________________________________________________________________________________________________________________
 
+        /// <summary>
+        /// Busca um Estudio através de seu ID
+        /// </summary>
+        /// <param name="idEstudio">ID do Estudio buscado</param>
+        /// <returns>O Estudio buscado </returns>
         public EstudioDomain BuscarPorId(int idEstudio)
         {
             using (SqlConnection con = new SqlConnection(stringConexao))
             {
-                string querySelectById = "SELECT nomeEstudio FROM ESTUDIO WHERE idEstudio = @idEstudio";
+                string querySelectById = "SELECT idEstudio, nomeEstudio FROM ESTUDIO WHERE idEstudio = @idEstudio";
                 con.Open();
                 SqlDataReader reader;
 
@@ -57,6 +67,7 @@ namespace senai.inlock.webApi.Repositories
                     {
                         EstudioDomain EstudioBuscado = new EstudioDomain
                         {
+                            idEstudio = Convert.ToInt32(reader["idEstudio"]),
                             nomeEstudio = reader["nomeEstudio"].ToString()
                         };
 
@@ -70,6 +81,10 @@ namespace senai.inlock.webApi.Repositories
 
         //_____________________________________________________________________________________________________________________________________________
 
+        /// <summary>
+        /// Cadastra um novo Estudio
+        /// </summary>
+        /// <param name="Estudio">Objeto novoEstudio com os novos dados</param>
         public void Cadastrar(EstudioDomain Estudio)
         {
             using (SqlConnection con = new SqlConnection(stringConexao))
@@ -80,6 +95,7 @@ namespace senai.inlock.webApi.Repositories
                 {
                     con.Open();
 
+                    cmd.Parameters.AddWithValue("@idEstudio", Estudio.idEstudio);
                     cmd.Parameters.AddWithValue("@nomeEstudio", Estudio.nomeEstudio);
 
                     cmd.ExecuteNonQuery();
@@ -89,6 +105,10 @@ namespace senai.inlock.webApi.Repositories
 
         //_____________________________________________________________________________________________________________________________________________
 
+        /// <summary>
+        /// Deleta um Estudio existente
+        /// </summary>
+        /// <param name="idEstudio">ID do Estudio deletado</param>
         public void Deletar(int idEstudio)
         {
             using (SqlConnection con = new SqlConnection(stringConexao))
@@ -106,6 +126,10 @@ namespace senai.inlock.webApi.Repositories
 
         //_____________________________________________________________________________________________________________________________________________
 
+        /// <summary>
+        /// Lista todos os Estudios
+        /// </summary>
+        /// <returns>Lista de Estudios</returns>
         public List<EstudioDomain> ListarTodos()
         {
             List<EstudioDomain> listaEstudio = new List<EstudioDomain>();
@@ -138,6 +162,10 @@ namespace senai.inlock.webApi.Repositories
 
         //_____________________________________________________________________________________________________________________________________________
 
+        /// <summary>
+        /// Lista todos os Estudios com suas respectivas listas de jogos
+        /// </summary>
+        /// <returns>Uma lista de Estudios com seus jogos</returns>
         public List<EstudioDomain> ListarComJogos()
         {
             List<EstudioDomain> listaEstudios = new List<EstudioDomain>();

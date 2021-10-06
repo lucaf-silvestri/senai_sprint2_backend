@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using senai.inlock.webApi.Domains;
 using senai.inlock.webApi.Interfaces;
 using senai.inlock.webApi.Repositories;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -93,12 +95,31 @@ namespace senai.inlock.webApi.Controllers
         {
             UsuarioDomain usuarioBuscado = _UsuarioRepository.BuscarPorEmailSenha(login.email, login.senha);
 
-            if (usuarioBuscado != null)
+            if (usuarioBuscado == null)
             {
-                return NotFound(usuarioBuscado);
+                return NotFound("E-mail ou senha inválidos.");
             }
 
-            return NotFound("E-mail ou senha inválidos.");
+            var claims = new[]
+            {
+                new Claim(JwtRegisteredClaimNames.Email, usuarioBuscado.email),
+                new Claim(JwtRegisteredClaimNames.Jti, usuarioBuscado.idUsuario.ToString()),
+                new Claim(ClaimTypes.Role, usuarioBuscado.idTipoUsuario.ToString())
+            };
+
+            var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("inlock-chave-autenticacao"));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            var token = new JwtSecurityToken(
+                issuer: "Luca",
+                audience: "Luca",
+                claims: claims,
+                expires: DateTime.Now.AddMinutes(30),
+                signingCredentials: creds
+            );
+            return Ok(new
+            {
+                Token = new JwtSecurityTokenHandler().WriteToken(token)
+            });
         }
     }
 }

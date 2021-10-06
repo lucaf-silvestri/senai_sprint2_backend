@@ -48,7 +48,7 @@ namespace senai.inlock.webApi.Repositories
         {
             using (SqlConnection con = new SqlConnection(stringConexao))
             {
-                string querySelectById = "SELECT nomeJogo, descricao, dataLancamento, valor, idEstudio FROM Jogo WHERE idJogo = @idJogo";
+                string querySelectById = "SELECT idJogo, nomeJogo, descricao, dataLancamento, valor, idEstudio FROM Jogo WHERE idJogo = @idJogo";
                 con.Open();
                 SqlDataReader reader;
 
@@ -61,6 +61,7 @@ namespace senai.inlock.webApi.Repositories
                     {
                         JogoDomain JogoBuscado = new JogoDomain
                         {
+                            idJogo = Convert.ToInt32(reader["idJogo"]),
                             nomeJogo = reader["nomeJogo"].ToString(),
                             descricao = reader["descricao"].ToString(),
                             valor = Convert.ToDecimal(reader["valor"]),
@@ -88,6 +89,7 @@ namespace senai.inlock.webApi.Repositories
                 {
                     con.Open();
 
+                    cmd.Parameters.AddWithValue("@idJogo", Jogo.idJogo);
                     cmd.Parameters.AddWithValue("@nomeJogo", Jogo.nomeJogo);
                     cmd.Parameters.AddWithValue("@descricao", Jogo.descricao);
                     cmd.Parameters.AddWithValue("@dataLancamento", Jogo.dataLancamento);

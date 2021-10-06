@@ -26,6 +26,7 @@ namespace senai.inlock.webApi.Controllers
             _JogoRepository = new JogoRepository();
         }
 
+        [Authorize(Roles = "1, 2")]
         [HttpGet]
         public IActionResult Get()
         {

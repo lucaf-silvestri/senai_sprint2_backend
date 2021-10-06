@@ -88,6 +88,7 @@ namespace senai.inlock.webApi.Repositories
                 {
                     con.Open();
 
+                    cmd.Parameters.AddWithValue("@idUsuario", Usuario.idUsuario);
                     cmd.Parameters.AddWithValue("@email", Usuario.email);
                     cmd.Parameters.AddWithValue("@senha", Usuario.senha);
                     cmd.Parameters.AddWithValue("@idTipoUsuario", Usuario.idTipoUsuario);
