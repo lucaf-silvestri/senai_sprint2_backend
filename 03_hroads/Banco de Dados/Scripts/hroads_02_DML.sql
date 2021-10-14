@@ -47,3 +47,15 @@ GO
 
 UPDATE classe SET nomeClasse = 'Necromancer' WHERE idClasse = 5;
 GO
+
+INSERT INTO tipoUsuario
+VALUES
+('Administrador'),
+('Jogador');
+GO
+
+INSERT INTO usuario
+VALUES
+(1, 'Admin', 'admin@admin.com', 'admin'),
+(2, 'Jogador', 'jogador@jogador.com', 'jogador');
+GO

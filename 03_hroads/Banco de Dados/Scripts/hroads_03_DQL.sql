@@ -1,15 +1,25 @@
 USE HROADS_MANHA;
 GO
 
+SELECT * FROM tipoHabilidade;
+GO
+
+SELECT * FROM habilidade;
+GO
+
 SELECT * FROM ClasseHabilidade;
 GO
 
---Selecionar todos os personagens:
 SELECT * FROM personagem;
 GO
 
---Selecionar todas as classes:
 SELECT * FROM classe;
+GO
+
+SELECT * FROM tipoUsuario;
+GO
+
+SELECT * FROM usuario;
 GO
 
 --Selecionar somente o nome das classes:

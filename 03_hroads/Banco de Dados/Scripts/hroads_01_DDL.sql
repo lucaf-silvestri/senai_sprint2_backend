@@ -40,3 +40,18 @@ CREATE TABLE personagem (
 	dataCriacao DATE,
 );
 GO
+
+CREATE TABLE tipoUsuario(
+	idTipoUsuario INT PRIMARY KEY IDENTITY(1,1),
+	nomeTipoUsuario VARCHAR(50) NOT NULL UNIQUE
+);
+GO
+
+CREATE TABLE usuario(
+	idUsuario INT PRIMARY KeY IdeNTITY(1,1),
+	idTipoUsuario INT FOREIGN KEY REFERENCES tipoUsuario(idTipoUsuario),
+	nome VARCHAR(50) NOT NULL,
+	email VARCHAR(100) NOT NULL UNIQUE,
+	senha VARCHAR(50) NOT NULL
+);
+GO
