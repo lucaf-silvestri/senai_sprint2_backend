@@ -56,5 +56,10 @@ namespace senai.hroads.webApi.Repositories
         {
             return ctx.Classes.Include(c => c.Personagems).ToList();
         }
+
+        public List<Classe> ListarComClasseHabilidades()
+        {
+            return ctx.Classes.Include(c => c.ClasseHabilidades).ToList();
+        }
     }
 }

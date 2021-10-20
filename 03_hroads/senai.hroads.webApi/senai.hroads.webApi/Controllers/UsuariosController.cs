@@ -1,9 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using senai.hroads.webApi.Domains;
 using senai.hroads.webApi.Interfaces;
 using senai.hroads.webApi.Repositories;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 namespace senai.hroads.webApi.Controllers
 {
@@ -39,6 +43,7 @@ namespace senai.hroads.webApi.Controllers
             return Ok(UsuarioBuscado);
         }
 
+        [Authorize(Roles = "1")]
         [HttpPost]
         public IActionResult Post(Usuario novoUsuario)
         {
@@ -79,6 +84,38 @@ namespace senai.hroads.webApi.Controllers
             {
                 return BadRequest(erro);
             }
+        }
+
+        [HttpPost("Login")]
+        public IActionResult Login(Usuario login)
+        {
+            Usuario usuarioBuscado = _UsuarioRepository.Login(login.Email, login.Senha);
+
+            if (usuarioBuscado == null)
+            {
+                return NotFound("E-mail ou senha inválidos.");
+            }
+
+            var claims = new[]
+            {
+                new Claim(JwtRegisteredClaimNames.Email, usuarioBuscado.Email),
+                new Claim(JwtRegisteredClaimNames.Jti, usuarioBuscado.IdUsuario.ToString()),
+                new Claim(ClaimTypes.Role, usuarioBuscado.IdTipoUsuario.ToString())
+            };
+
+            var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("hroads-chave-autenticacao"));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            var token = new JwtSecurityToken(
+                issuer: "Luca",
+                audience: "Luca",
+                claims: claims,
+                expires: DateTime.Now.AddMinutes(30),
+                signingCredentials: creds
+            );
+            return Ok(new
+            {
+                Token = new JwtSecurityTokenHandler().WriteToken(token)
+            });
         }
     }
 }

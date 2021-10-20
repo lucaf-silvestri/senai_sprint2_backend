@@ -34,8 +34,8 @@ CREATE TABLE personagem (
 	idPersonagem INT PRIMARY KEY IDENTITY (1,1),
 	idClasse INT FOREIGN KEY REFERENCES classe (idClasse),
 	nome VARCHAR(100) NOT NULL,
-	maxVida SMALLINT UNIQUE NOT NULL,
-	maxMana SMALLINT UNIQUE NOT NULL,
+	maxVida SMALLINT NOT NULL,
+	maxMana SMALLINT NOT NULL,
 	dataAtualizacao DATE,
 	dataCriacao DATE,
 );

@@ -53,7 +53,7 @@ namespace senai.hroads.webApi.Repositories
 
         List<TipoHabilidade> ITipoHabilidadeRepository.ListarComHabilidades()
         {
-            return ctx.TipoHabilidades.Include(Th => Th.Habilidades).OrderBy(Th => Th.IdTipoHab).ToList();
+            return ctx.TipoHabilidades.Include(c => c.Habilidades).OrderBy(c => c.IdTipoHab).ToList();
         }
     }
 }

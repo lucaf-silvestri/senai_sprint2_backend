@@ -40,5 +40,11 @@ namespace senai.hroads.webApi.Interfaces
         /// </summary>
         /// <param name="idTipoUsuario">ID do TipoUsuario deletado</param>
         void Deletar(int idTipoUsuario);
+
+        /// <summary>
+        /// Lista todos os TiposUsuario com suas respectivas listas de usuarios
+        /// </summary>
+        /// <returns>Uma lista de TiposUsuario com seus usuarios</returns>
+        public List<TipoUsuario> ListarComUsuarios();
     }
 }

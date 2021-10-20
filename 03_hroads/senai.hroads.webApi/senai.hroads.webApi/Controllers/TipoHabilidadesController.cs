@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using senai.hroads.webApi.Domains;
 using senai.hroads.webApi.Interfaces;
 using senai.hroads.webApi.Repositories;
@@ -39,6 +40,7 @@ namespace senai.hroads.webApi.Controllers
             return Ok(TipoHabilidadeBuscado);
         }
 
+        [Authorize(Roles = "1")]
         [HttpPost]
         public IActionResult Post(TipoHabilidade novoTipoHabilidade)
         {
@@ -78,6 +80,19 @@ namespace senai.hroads.webApi.Controllers
             catch (Exception erro)
             {
                 return BadRequest(erro);
+            }
+        }
+
+        [HttpGet("habilidades")]
+        public IActionResult ListarComHabilidades()
+        {
+            try
+            {
+                return Ok(_TipoHabilidadeRepository.ListarComHabilidades());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
             }
         }
     }

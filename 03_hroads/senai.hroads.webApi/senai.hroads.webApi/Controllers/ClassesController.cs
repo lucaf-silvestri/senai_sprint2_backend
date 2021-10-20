@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using senai.hroads.webApi.Domains;
 using senai.hroads.webApi.Interfaces;
 using senai.hroads.webApi.Repositories;
@@ -39,6 +40,7 @@ namespace senai.hroads.webApi.Controllers
             return Ok(ClasseBuscado);
         }
 
+        [Authorize(Roles = "1")]
         [HttpPost]
         public IActionResult Post(Classe novoClasse)
         {
@@ -87,6 +89,19 @@ namespace senai.hroads.webApi.Controllers
             try
             {
                 return Ok(_ClasseRepository.ListarComPersonagens());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
+
+        [HttpGet("classehabilidades")]
+        public IActionResult ListarComClasseHabilidades()
+        {
+            try
+            {
+                return Ok(_ClasseRepository.ListarComClasseHabilidades());
             }
             catch (Exception ex)
             {

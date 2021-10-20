@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using senai.hroads.webApi.Domains;
 using senai.hroads.webApi.Interfaces;
 using senai.hroads.webApi.Repositories;
@@ -39,6 +40,7 @@ namespace senai.hroads.webApi.Controllers
             return Ok(TipoUsuarioBuscado);
         }
 
+        [Authorize(Roles = "1")]
         [HttpPost]
         public IActionResult Post(TipoUsuario novoTipoUsuario)
         {
@@ -78,6 +80,19 @@ namespace senai.hroads.webApi.Controllers
             catch (Exception erro)
             {
                 return BadRequest(erro);
+            }
+        }
+
+        [HttpGet("usuarios")]
+        public IActionResult ListarComUsuarios()
+        {
+            try
+            {
+                return Ok(_TipoUsuarioRepository.ListarComUsuarios());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
             }
         }
     }
