@@ -71,3 +71,5 @@ C:\Users\aluno\Documents\Pasta Mais Ridícula\SENAI\senai_sprint2_backend\03_hro
 C:\Users\aluno\Documents\Pasta Mais Ridícula\SENAI\senai_sprint2_backend\03_hroads\senai.hroads.webApi\senai.hroads.webApi\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\aluno\Documents\Pasta Mais Ridícula\SENAI\senai_sprint2_backend\03_hroads\senai.hroads.webApi\senai.hroads.webApi\bin\Debug\net5.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\aluno\Documents\Pasta Mais Ridícula\SENAI\senai_sprint2_backend\03_hroads\senai.hroads.webApi\senai.hroads.webApi\obj\Debug\net5.0\senai.hroads.webApi.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\aluno\Documents\Pasta Mais Ridícula\SENAI\senai_sprint2_backend\03_hroads\senai.hroads.webApi\senai.hroads.webApi\bin\Debug\net5.0\Microsoft.DotNet.PlatformAbstractions.dll
+C:\Users\aluno\Documents\Pasta Mais Ridícula\SENAI\senai_sprint2_backend\03_hroads\senai.hroads.webApi\senai.hroads.webApi\bin\Debug\net5.0\Microsoft.Extensions.DependencyModel.dll

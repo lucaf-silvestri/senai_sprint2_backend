@@ -82,18 +82,5 @@ namespace senai.hroads.webApi.Controllers
                 return BadRequest(erro);
             }
         }
-
-        [HttpGet("classehabilidades")]
-        public IActionResult ListarComClasseHabilidades()
-        {
-            try
-            {
-                return Ok(_HabilidadeRepository.ListarComClasseHabilidades());
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex);
-            }
-        }
     }
 }

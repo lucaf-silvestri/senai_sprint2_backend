@@ -44,11 +44,5 @@ namespace senai.hroads.webApi.Interfaces
         /// </summary>
         /// <returns>Uma lista de Classes com seus personagens</returns>
         List<Classe> ListarComPersonagens();
-
-        /// <summary>
-        /// Lista todas as Classes com suas respectivas listas de ClasseHabilidades
-        /// </summary>
-        /// <returns>Uma lista de Classes com suas ClasseHabilidades</returns>
-        List<Classe> ListarComClasseHabilidades();
     }
 }

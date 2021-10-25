@@ -42,7 +42,7 @@ namespace senai.hroads.webApi.Contexts
             modelBuilder.Entity<Classe>(entity =>
             {
                 entity.HasKey(e => e.IdClasse)
-                    .HasName("PK__classe__60FFF8010256E395");
+                    .HasName("PK__classe__60FFF801241DEE38");
 
                 entity.ToTable("classe");
 
@@ -58,7 +58,7 @@ namespace senai.hroads.webApi.Contexts
             modelBuilder.Entity<ClasseHabilidade>(entity =>
             {
                 entity.HasKey(e => e.IdClasseHabilidade)
-                    .HasName("PK__classeHa__5FC969729ABCE6B6");
+                    .HasName("PK__classeHa__5FC9697278ED9B45");
 
                 entity.ToTable("classeHabilidade");
 
@@ -82,7 +82,7 @@ namespace senai.hroads.webApi.Contexts
             modelBuilder.Entity<Habilidade>(entity =>
             {
                 entity.HasKey(e => e.IdHabilidade)
-                    .HasName("PK__habilida__655F7528B97A32D1");
+                    .HasName("PK__habilida__655F7528B6C54D9B");
 
                 entity.ToTable("habilidade");
 
@@ -105,7 +105,7 @@ namespace senai.hroads.webApi.Contexts
             modelBuilder.Entity<Personagem>(entity =>
             {
                 entity.HasKey(e => e.IdPersonagem)
-                    .HasName("PK__personag__E175C72EB20B63DB");
+                    .HasName("PK__personag__E175C72EF2A7D9CA");
 
                 entity.ToTable("personagem");
 
@@ -140,7 +140,7 @@ namespace senai.hroads.webApi.Contexts
             modelBuilder.Entity<TipoHabilidade>(entity =>
             {
                 entity.HasKey(e => e.IdTipoHab)
-                    .HasName("PK__tipoHabi__FD3EC2548CCA56F0");
+                    .HasName("PK__tipoHabi__FD3EC254F1722B4F");
 
                 entity.ToTable("tipoHabilidade");
 
@@ -156,11 +156,11 @@ namespace senai.hroads.webApi.Contexts
             modelBuilder.Entity<TipoUsuario>(entity =>
             {
                 entity.HasKey(e => e.IdTipoUsuario)
-                    .HasName("PK__tipoUsua__03006BFF25B530D4");
+                    .HasName("PK__tipoUsua__03006BFF953B37F0");
 
                 entity.ToTable("tipoUsuario");
 
-                entity.HasIndex(e => e.NomeTipoUsuario, "UQ__tipoUsua__A017BD9F17453EBE")
+                entity.HasIndex(e => e.NomeTipoUsuario, "UQ__tipoUsua__A017BD9F06F68CEB")
                     .IsUnique();
 
                 entity.Property(e => e.IdTipoUsuario).HasColumnName("idTipoUsuario");
@@ -175,11 +175,11 @@ namespace senai.hroads.webApi.Contexts
             modelBuilder.Entity<Usuario>(entity =>
             {
                 entity.HasKey(e => e.IdUsuario)
-                    .HasName("PK__usuario__645723A6E8862D5C");
+                    .HasName("PK__usuario__645723A6E141DD64");
 
                 entity.ToTable("usuario");
 
-                entity.HasIndex(e => e.Email, "UQ__usuario__AB6E616448E0E20B")
+                entity.HasIndex(e => e.Email, "UQ__usuario__AB6E61644D2CBFB5")
                     .IsUnique();
 
                 entity.Property(e => e.IdUsuario).HasColumnName("idUsuario");

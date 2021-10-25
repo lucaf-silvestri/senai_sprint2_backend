@@ -129,7 +129,7 @@
 					"response": []
 				},
 				{
-					"name": "Jogos.Excluir",
+					"name": "ClasseHabilidades.Excluir",
 					"request": {
 						"method": "DELETE",
 						"header": [],
@@ -307,27 +307,6 @@
 						}
 					},
 					"response": []
-				},
-				{
-					"name": "Classes.ListarClasseHab",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:5000/api/classes/classehabilidades",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "5000",
-							"path": [
-								"api",
-								"classes",
-								"classehabilidades"
-							]
-						}
-					},
-					"response": []
 				}
 			]
 		},
@@ -475,27 +454,6 @@
 						}
 					},
 					"response": []
-				},
-				{
-					"name": "Habilidades.ListarClasseHab",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:5000/api/habilidades/classehabilidades",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "5000",
-							"path": [
-								"api",
-								"habilidades",
-								"classehabilidades"
-							]
-						}
-					},
-					"response": []
 				}
 			]
 		},
@@ -540,7 +498,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvZ2Fkb3JAam9nYWRvci5jb20iLCJqdGkiOiIyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiMiIsImV4cCI6MTYzNDMwODc1NiwiaXNzIjoiTHVjYSIsImF1ZCI6Ikx1Y2EifQ.MejYbcUvfPQfqzI5NTfbRDOn8677e_XLgoQxgsO4DRc",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvZ2Fkb3JAam9nYWRvci5jb20iLCJqdGkiOiIyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiMiIsImV4cCI6MTYzNTE3MTQyMCwiaXNzIjoiTHVjYSIsImF1ZCI6Ikx1Y2EifQ.3kP1wHDGGKtCNX4hbOAxO-nios2_fEATBfq1CzBUtMo",
 									"type": "string"
 								}
 							]
@@ -1139,7 +1097,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"admin@admin.com\",\r\n    \"senha\": \"admin\"\r\n}",
+							"raw": "{\r\n    \"email\": \"jogador@jogador.com\",\r\n    \"senha\": \"jogador\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"

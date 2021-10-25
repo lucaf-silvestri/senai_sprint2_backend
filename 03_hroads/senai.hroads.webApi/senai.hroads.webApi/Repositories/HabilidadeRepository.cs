@@ -51,10 +51,5 @@ namespace senai.hroads.webApi.Repositories
         {
             return ctx.Habilidades.FirstOrDefault(c => c.IdHabilidade == id);
         }
-
-        public List<Habilidade> ListarComClasseHabilidades()
-        {
-            return ctx.Habilidades.Include(c => c.ClasseHabilidades).ToList();
-        }
     }
 }
