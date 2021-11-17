@@ -1,4 +1,5 @@
-﻿using senai_spMedicalGroup_webApi.Contexts;
+﻿using Microsoft.EntityFrameworkCore;
+using senai_spMedicalGroup_webApi.Contexts;
 using senai_spMedicalGroup_webApi.Domains;
 using senai_spMedicalGroup_webApi.Interfaces;
 using System;
@@ -47,6 +48,16 @@ namespace senai_spMedicalGroup_webApi.Repositories
         public List<Usuario> Listar()
         {
             return ctx.Usuarios.ToList();
+        }
+
+        public List<Usuario> ListarComClientes()
+        {
+            return ctx.Usuarios.Include(c => c.Cliente).OrderBy(c => c.IdUsuario).ToList();
+        }
+
+        public List<Usuario> ListarComMedicos()
+        {
+            return ctx.Usuarios.Include(c => c.Medico).OrderBy(c => c.IdUsuario).ToList();
         }
 
         public Usuario ListarId(int id)

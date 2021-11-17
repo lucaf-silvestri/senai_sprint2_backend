@@ -42,6 +42,18 @@ namespace senai_spMedicalGroup_webApi.Interfaces
         void Deletar(int idUsuario);
 
         /// <summary>
+        /// Lista todos os Usuarios com suas respectivas listas de clientes
+        /// </summary>
+        /// <returns>Uma lista de Usuarios com seus clientes</returns>
+        public List<Usuario> ListarComClientes();
+
+        /// <summary>
+        /// Lista todos os Usuarios com suas respectivas listas de medicos
+        /// </summary>
+        /// <returns>Uma lista de Usuarios com seus medicos</returns>
+        public List<Usuario> ListarComMedicos();
+
+        /// <summary>
         /// Busca um usuário através de seu email e senha
         /// </summary>
         /// <param name="email">Email do usuário buscado</param>

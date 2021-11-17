@@ -14,40 +14,40 @@ namespace senai_spMedicalGroup_webApi.Controllers
     [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
-    public class UsuariosController : ControllerBase
+    public class ClinicasController : ControllerBase
     {
-        private IUsuarioRepository _UsuarioRepository { get; set; }
+        private IClinicaRepository _ClinicaRepository { get; set; }
 
-        public UsuariosController()
+        public ClinicasController()
         {
-            _UsuarioRepository = new UsuarioRepository();
+            _ClinicaRepository = new ClinicaRepository();
         }
 
         [HttpGet]
         public IActionResult Get()
         {
-            List<Usuario> listaUsuarios = _UsuarioRepository.Listar();
-            return Ok(listaUsuarios);
+            List<Clinica> listaClinicas = _ClinicaRepository.Listar();
+            return Ok(listaClinicas);
         }
 
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
-            Usuario UsuarioBuscado = _UsuarioRepository.ListarId(id);
+            Clinica ClinicaBuscado = _ClinicaRepository.ListarId(id);
 
-            if (UsuarioBuscado == null)
+            if (ClinicaBuscado == null)
             {
-                return NotFound("Nenhum Usuário encontrado.");
+                return NotFound("Nenhuma Clinica encontrada.");
             }
 
-            return Ok(UsuarioBuscado);
+            return Ok(ClinicaBuscado);
         }
 
         [Authorize(Roles = "1")]
         [HttpPost]
-        public IActionResult Post(Usuario novoUsuario)
+        public IActionResult Post(Clinica novoClinica)
         {
-            _UsuarioRepository.Cadastrar(novoUsuario);
+            _ClinicaRepository.Cadastrar(novoClinica);
 
             return StatusCode(201);
         }
@@ -56,29 +56,29 @@ namespace senai_spMedicalGroup_webApi.Controllers
         [HttpDelete("excluir/{id}")]
         public IActionResult Delete(int id)
         {
-            _UsuarioRepository.Deletar(id);
+            _ClinicaRepository.Deletar(id);
             return StatusCode(204);
         }
 
         [Authorize(Roles = "1")]
         [HttpPut("{id}")]
-        public IActionResult Put(int id, Usuario UsuarioAtualizado)
+        public IActionResult Put(int id, Clinica ClinicaAtualizado)
         {
-            Usuario UsuarioBuscado = _UsuarioRepository.ListarId(id);
+            Clinica ClinicaBuscado = _ClinicaRepository.ListarId(id);
 
-            if (UsuarioBuscado == null)
+            if (ClinicaBuscado == null)
             {
                 return NotFound
                     (new
                     {
-                        mensagem = "Usuário não encontrado.",
+                        mensagem = "Clinica não encontrada.",
                         erro = true
                     });
             }
 
             try
             {
-                _UsuarioRepository.Atualizar(id, UsuarioAtualizado);
+                _ClinicaRepository.Atualizar(id, ClinicaAtualizado);
 
                 return NoContent();
             }
@@ -93,20 +93,7 @@ namespace senai_spMedicalGroup_webApi.Controllers
         {
             try
             {
-                return Ok(_UsuarioRepository.ListarComMedicos());
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex);
-            }
-        }
-
-        [HttpGet("clientes")]
-        public IActionResult ListarComClientes()
-        {
-            try
-            {
-                return Ok(_UsuarioRepository.ListarComClientes());
+                return Ok(_ClinicaRepository.ListarComMedicos());
             }
             catch (Exception ex)
             {

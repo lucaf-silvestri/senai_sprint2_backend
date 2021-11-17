@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using senai_spMedicalGroup_webApi.Domains;
 using senai_spMedicalGroup_webApi.Interfaces;
 using senai_spMedicalGroup_webApi.Repositories;
@@ -39,6 +40,7 @@ namespace senai_spMedicalGroup_webApi.Controllers
             return Ok(TipoUsuarioBuscado);
         }
 
+        [Authorize(Roles = "1")]
         [HttpPost]
         public IActionResult Post(TipoUsuario novoTipoUsuario)
         {
@@ -47,6 +49,7 @@ namespace senai_spMedicalGroup_webApi.Controllers
             return StatusCode(201);
         }
 
+        [Authorize(Roles = "1")]
         [HttpDelete("excluir/{id}")]
         public IActionResult Delete(int id)
         {
@@ -54,6 +57,7 @@ namespace senai_spMedicalGroup_webApi.Controllers
             return StatusCode(204);
         }
 
+        [Authorize(Roles = "1")]
         [HttpPut("{id}")]
         public IActionResult Put(int id, TipoUsuario TipoUsuarioAtualizado)
         {
