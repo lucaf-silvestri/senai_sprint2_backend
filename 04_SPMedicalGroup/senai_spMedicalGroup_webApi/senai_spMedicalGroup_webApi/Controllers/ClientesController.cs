@@ -23,6 +23,10 @@ namespace senai_spMedicalGroup_webApi.Controllers
             _ClienteRepository = new ClienteRepository();
         }
 
+        /// <summary>
+        /// Lista todos os clientes
+        /// </summary>
+        /// <returns>Uma lista de clientes com um status code 200 - Ok</returns>
         [HttpGet]
         public IActionResult Get()
         {
@@ -30,6 +34,11 @@ namespace senai_spMedicalGroup_webApi.Controllers
             return Ok(listaClientes);
         }
 
+        /// <summary>
+        /// Busca um Cliente através de seu ID
+        /// </summary>
+        /// <param name="id">ID do Cliente buscado</param>
+        /// <returns>O Cliente buscado</returns>
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
@@ -43,6 +52,10 @@ namespace senai_spMedicalGroup_webApi.Controllers
             return Ok(ClienteBuscado);
         }
 
+        /// <summary>
+        /// Cadastra um novo Cliente
+        /// </summary>
+        /// <param name="novoCliente">Objeto novoCliente com os novos dados</param>
         [Authorize(Roles = "1")]
         [HttpPost]
         public IActionResult Post(Cliente novoCliente)
@@ -52,6 +65,10 @@ namespace senai_spMedicalGroup_webApi.Controllers
             return StatusCode(201);
         }
 
+        /// <summary>
+        /// Deleta um Cliente existente
+        /// </summary>
+        /// <param name="id">ID do Cliente deletado</param>
         [Authorize(Roles = "1")]
         [HttpDelete("excluir/{id}")]
         public IActionResult Delete(int id)
@@ -60,6 +77,11 @@ namespace senai_spMedicalGroup_webApi.Controllers
             return StatusCode(204);
         }
 
+        /// <summary>
+        /// Atualiza um Cliente existente passando o id pela URL da requisição
+        /// </summary>
+        /// <param name="id">id do Cliente que será atualizado</param>
+        /// <param name="ClienteAtualizado">Objeto ClienteAtualizado com os novos dados</param>
         [Authorize(Roles = "1")]
         [HttpPut("{id}")]
         public IActionResult Put(int id, Cliente ClienteAtualizado)
@@ -88,6 +110,10 @@ namespace senai_spMedicalGroup_webApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Lista todos os Clientes com suas respectivas listas de consultas
+        /// </summary>
+        /// <returns>Uma lista de Clientes com suas consultas</returns>
         [HttpGet("consultas")]
         public IActionResult ListarComConsultas()
         {

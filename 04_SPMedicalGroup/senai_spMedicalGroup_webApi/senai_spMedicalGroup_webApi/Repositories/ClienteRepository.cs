@@ -49,6 +49,10 @@ namespace senai_spMedicalGroup_webApi.Repositories
             ctx.SaveChanges();
         }
 
+        /// <summary>
+        /// Lista todos os Clientes
+        /// </summary>
+        /// <returns>Lista de Clientes</returns>
         public List<Cliente> Listar()
         {
             return ctx.Clientes.ToList();

@@ -144,3 +144,5 @@ C:\Users\48395996888\Documents\stealth\senai_sprint2_backend\04_SPMedicalGroup\s
 C:\Users\48395996888\Documents\stealth\senai_sprint2_backend\04_SPMedicalGroup\senai_spMedicalGroup_webApi\senai_spMedicalGroup_webApi\obj\Debug\net5.0\ref\senai_spMedicalGroup_webApi.dll
 C:\Users\48395996888\Documents\stealth\senai_sprint2_backend\04_SPMedicalGroup\senai_spMedicalGroup_webApi\senai_spMedicalGroup_webApi\obj\Debug\net5.0\senai_spMedicalGroup_webApi.pdb
 C:\Users\48395996888\Documents\stealth\senai_sprint2_backend\04_SPMedicalGroup\senai_spMedicalGroup_webApi\senai_spMedicalGroup_webApi\obj\Debug\net5.0\senai_spMedicalGroup_webApi.genruntimeconfig.cache
+C:\Users\aluno\Documents\Pasta Mais Ridícula\SENAI\senai_sprint2_backend\04_SPMedicalGroup\senai_spMedicalGroup_webApi\senai_spMedicalGroup_webApi\bin\Debug\net5.0\senai_spMedicalGroup_webApi.xml
+C:\Users\aluno\Documents\Pasta Mais Ridícula\SENAI\senai_sprint2_backend\04_SPMedicalGroup\senai_spMedicalGroup_webApi\senai_spMedicalGroup_webApi\obj\Debug\net5.0\senai_spMedicalGroup_webApi.xml
